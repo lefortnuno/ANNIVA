@@ -1,5 +1,6 @@
 cd C:\Users\~Trofel~\Desktop\HBD
 
+git add .gitignore
 git add *
 
 set /p commitMessage="Titre du commit : "

@@ -1,0 +1,9 @@
+.cake {
+  width: auto;
+}
+
+@media (width< 769px) {
+  .cake {
+    width: calc(100vw / 2);
+  }
+}

@@ -1,0 +1,29 @@
+:root {
+  --primary-color: #2015ea;
+  --primary-color-light: #6861f1;
+  --secondary-color: #c0dbea;
+  --text-dark: #020617;
+  --text-light: #8995a7;
+  --gray-light: #afb7c2;
+  --white: #ffffff;
+  --maintso: #32cd32;
+}
+* {
+  background-color: black;
+  color: white;
+}
+body {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes miodina {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+ 
