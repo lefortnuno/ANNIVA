@@ -13,17 +13,59 @@ import { BiCake } from "react-icons/bi";
 export default function Carte() {
   //#region //-variable
   const navigate = useNavigate();
+  const [isOpen, setOpen] = useState(false);
+  const [countdown, setCountdown] = useState(3);
+  const [isClickable, setIsClickable] = useState(false);
+  const [showGlitter, setShowGlitter] = useState(false);
+  const numRibbons = 9;
   //#endregion
+
+  useEffect(() => {
+    if (countdown > 0) {
+      const timer = setTimeout(() => {
+        setCountdown(countdown - 1);
+      }, 1000);
+      return () => clearTimeout(timer);
+    } else {
+      setIsClickable(true);
+      setOpen(true);
+      setShowGlitter(true);
+    }
+  }, [countdown]);
 
   const onHandleClick = () => {
     navigate("/");
   };
 
+  const openBook = () => {
+    if (isClickable) {
+      setOpen(!isOpen);
+    }
+  };
+
+  // Generate ribbon elements
+  const renderRibbons = () => {
+    return Array.from({ length: numRibbons }, (_, index) => (
+      <div className="ribbon" key={index}></div>
+    ));
+  };
+
   //#region //-html
   return (
     <HBD isPlay={true}>
-      <div className="birthday-card">
-        <div className="back">
+      <div className={`countdown-background ${isClickable ? "yes" : "no"}`}>
+        {countdown > 0 && <h2 className="countdown-text">{countdown}</h2>}
+        {showGlitter && (
+          <div className="ribbon-container">{renderRibbons()}</div>
+        )}
+      </div>
+
+      <div
+        className={`birthday-card ${isOpen ? "active" : "passive"}`}
+        onClick={openBook}
+        style={{ pointerEvents: isClickable ? "auto" : "none" }}
+      >
+        <div className={`back ${isOpen ? "active" : "passive"}`}>
           <div className="b-top">
             <img src={candles} className="candles" />
           </div>
@@ -33,7 +75,7 @@ export default function Carte() {
           </div>
         </div>
 
-        <div className="front">
+        <div className={`front ${isOpen ? "active" : "passive"}`}>
           <img src={birthday} />
         </div>
 

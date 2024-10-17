@@ -1,21 +1,59 @@
 :root {
-  --primary-color: #2015ea;
-  --primary-color-light: #6861f1;
-  --secondary-color: #c0dbea;
-  --text-dark: #020617;
-  --text-light: #8995a7;
-  --gray-light: #afb7c2;
-  --white: #ffffff;
-  --maintso: #32cd32;
+  --primary-color: #9612eb;
+  --dark-color: #020617;
+  --dark-color-light: #331717;
+  --white-color: #fff;
+
+  --largeur-min: 200px;
+  --hauteur-min: 300px;
+  --largeur: 300px;
+  --hauteur: 425px;
+  --largeur-max: 325px;
+  --hauteur-max: 450px;
+
+  --marge-t: 35px;
+  --marge-p: 25px;
+}
+.countdown-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  transition: all 0.8s ease-in-out;
+}
+.countdown-background.yes {
+  z-index: -10;
+  background: transparent;
+}
+.countdown-text {
+  font-size: 3rem;
+  color: white;
+  font-weight: bold;
+  animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .birthday-card {
   position: relative;
   left: 0px;
-  top: -50px;
-  width: 300px;
-  height: 425px;
-  border: 10px solid #9612eb;
+  top: -20px;
+  width: var(--largeur);
+  height: var(--hauteur);
+  border: 10px solid var(--primary-color);
   margin: 0px auto 0 auto;
   box-shadow: inset 10px 0px 15px 0px rgba(0, 0, 0, 0.1);
   background-image: linear-gradient(
@@ -28,33 +66,32 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  background-color: #9612eb;
+  background-color: var(--primary-color);
   transform: rotateZ(0deg);
-  transition: all 0.3s ease-in-out;
-  /* border-left: 15px solid black; */
+  transition: all 0.5s ease-in-out;
 }
 
 .birthday-card .text {
   width: 80%;
   height: 80%;
   margin: auto;
-  color: black;
+  color: var(--dark-color);
 }
 
 .birthday-card .text p {
   font-size: 1.1em;
   line-height: 1.4;
   font-family: "Nobile";
-  color: #331717;
+  color: var(--dark-color-light);
   font-style: italic;
   text-align: center;
-  margin: 30px auto;
+  margin: 60px auto;
   font-weight: bold;
 }
 
 .birthday-card .text .title {
   font-size: 1.5em;
-  margin: 60px auto 
+  margin: 60px auto;
 }
 
 .birthday-card .front {
@@ -63,23 +100,20 @@
   align-items: center;
 
   position: absolute;
-  width: 300px;
-  height: 425px;
+  width: var(--largeur);
+  height: var(--hauteur);
   margin: -10px 0 0 -10px;
-  border: 10px solid #9612eb;
+  border: 10px solid var(--primary-color);
   backface-visibility: hidden;
-  background-color: #9612eb;
+  background-color: var(--primary-color);
   cursor: pointer;
 
   background-size: contain;
   transform-style: preserve-3d;
   transform-origin: 0% 50%;
   transform: perspective(800px) rotateY(0deg);
-  transition: all 0.8s ease-in-out;
+  transition: all 1.2s ease-in-out;
 }
-/* .birthday-card:hover .front {
-  transform: perspective(800px) rotateY(-170deg); 
-} */
 
 .birthday-card .front img {
   box-shadow: 0px 6px 11px 7px rgba(0, 0, 0, 0.22);
@@ -90,17 +124,17 @@
 
 .birthday-card .back {
   position: absolute;
-  width: 300px;
-  height: 425px;
-  border: 10px solid #9612eb; 
-  background-color: #9612eb;
+  width: var(--largeur);
+  height: var(--hauteur);
+  border: 10px solid var(--primary-color);
+  background-color: var(--primary-color);
   margin: -10px 0px 0 -10px;
   backface-visibility: visible;
   filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
   transform-style: preserve-3d;
   transform-origin: 0% 50%;
   transform: perspective(800px) rotateY(0deg);
-  transition: all 0.8s ease-in-out;
+  transition: all 1.2s ease-in-out;
   overflow: hidden;
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.1);
 }
@@ -112,42 +146,184 @@
 }
 
 .b-top {
-  background-color: #9612eb; 
-  border: 4px dashed white;
+  background-color: var(--primary-color);
+  border: 4px dashed var(--white-color);
+  height: 70%;
 }
 .b-bottom {
   display: flex;
   justify-content: space-around;
-  align-items: center; 
-  background-color: white;  
-  border-top: 4px solid #9612eb;
+  align-items: center;
+  background-color: var(--white-color);
+  border-top: 4px solid var(--primary-color);
+  height: 30%;
 }
 
 .birthday-card .back .candles {
-  border-top: 1px solid #9612eb;
-  border-left: 1px solid #9612eb;
-  border-right: 1px solid #9612eb;
+  border-top: 1px solid var(--primary-color);
+  border-left: 1px solid var(--primary-color);
+  border-right: 1px solid var(--primary-color);
 }
-.birthday-card .back .heart,  
+.birthday-card .back .heart,
 .birthday-card .back .zelina {
-  height: 100%;
-  width: 44%; 
+  width: 44%;
 }
 .birthday-card .back .zelina {
-  rotate: 25deg; 
+  rotate: 25deg;
 }
 
-.birthday-card:hover {
+.birthday-card.active {
   left: 160px;
   transform: rotateZ(-4deg);
 }
 
-.birthday-card:hover .front {
+.front.active {
   transform: perspective(800px) rotateY(-170deg);
 }
 
-.birthday-card:hover .back {
+.back.active {
   transform: perspective(800px) rotateY(-170deg);
   box-shadow: 7px 0 5px 0 rgba(0, 0, 0, 0.3),
     inset 2px 0px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* Glitter Effect */
+/* Falling Ribbons Effect */
+.ribbon-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ribbon {
+  position: absolute;
+  top: -50px; /* Start above the screen */
+  width: 5px;
+  height: 20px; /* Ribbon colors */
+  border-radius: 3px;
+  animation: fall 3s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Random ribbon placement and timing */
+.ribbon:nth-child(1) {
+  left: 10%;
+  animation-duration: 3s;
+  animation-delay: 0s;
+  background: linear-gradient(45deg, #ffcc00, #ff0066);
+}
+
+.ribbon:nth-child(2) {
+  left: 20%;
+  animation-duration: 3.5s;
+  animation-delay: 0.2s;
+  background: linear-gradient(45deg, #00ccff, #ff0066);
+}
+
+.ribbon:nth-child(3) {
+  left: 30%;
+  animation-duration: 4s;
+  animation-delay: 0.4s;
+  background: linear-gradient(45deg, #66ff66, #ffcc00);
+}
+
+.ribbon:nth-child(4) {
+  left: 40%;
+  animation-duration: 3.8s;
+  animation-delay: 0.6s;
+  background: linear-gradient(45deg, #ff6600, #0066ff);
+}
+
+.ribbon:nth-child(5) {
+  left: 50%;
+  animation-duration: 3.2s;
+  animation-delay: 0.8s;
+  background: linear-gradient(45deg, #cc33ff, #66ffcc);
+}
+
+.ribbon:nth-child(6) {
+  left: 60%;
+  animation-duration: 4.1s;
+  animation-delay: 0.5s;
+  background: linear-gradient(45deg, #ff6666, #66ccff);
+}
+
+.ribbon:nth-child(7) {
+  left: 70%;
+  animation-duration: 3.7s;
+  animation-delay: 0.3s;
+  background: linear-gradient(45deg, #ffff66, #cc33ff);
+}
+
+.ribbon:nth-child(8) {
+  left: 80%;
+  animation-duration: 4.3s;
+  animation-delay: 0.9s;
+  background: linear-gradient(45deg, #ff0066, #ffcc66);
+}
+
+.ribbon:nth-child(9) {
+  left: 90%;
+  animation-duration: 3.5s;
+  animation-delay: 0.1s;
+  background: linear-gradient(45deg, #ffcc00, #ff0066); 
+}
+ 
+
+@media (width< 661px) {
+  .birthday-card {
+    width: var(--largeur-min);
+    height: var(--hauteur-min);
+    /* text-wrap: balance; */
+  }
+
+  .birthday-card .text p {
+    margin: var(--marge-p) auto;
+    font-size: 0.9em;
+    line-height: 1.4;
+  }
+
+  .birthday-card .text .title {
+    margin: var(--marge-t) auto;
+    font-size: 1.1em;
+  }
+
+  .birthday-card .front {
+    width: var(--largeur-min);
+    height: var(--hauteur-min);
+  }
+
+  .birthday-card .back {
+    width: var(--largeur-min);
+    height: var(--hauteur-min);
+  }
+
+  .b-top {
+    height: 65%;
+  }
+  .b-bottom {
+    height: 35%;
+  }
+
+  .birthday-card.active {
+    left: 105px;
+  }
 }

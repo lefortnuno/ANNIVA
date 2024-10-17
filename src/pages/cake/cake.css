@@ -1,5 +1,6 @@
 .cake {
   width: auto;
+  cursor: pointer;
 }
 
 @media (width< 769px) {
