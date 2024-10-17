@@ -1,0 +1,38 @@
+:root {
+  --primary-color: #9612eb;
+  --dark-color: #020617;
+  --dark-color-light: #331717;
+  --white-color: #fff;
+
+  --largeur-min: 200px;
+  --hauteur-min: 300px;
+  --largeur: 300px;
+  --hauteur: 425px;
+  --largeur-max: 325px;
+  --hauteur-max: 450px;
+
+  --marge-t-min: 25px;
+  --marge-p-min: 20px;
+  --marge-t: 40px;
+  --marge-p: 35px;
+}
+.bonus {
+  width: var(--largeur);
+  height: var(--hauteur);
+}
+.bonus .lefort {
+  width: 93%;
+  height: 95%;
+}
+ 
+
+@media (width< 661px) {
+  .bonus {
+    width: var(--largeur-min);
+    height: var(--hauteur-min);
+  }
+  .bonus .lefort {
+    width: 90%;
+    height: 93%;
+  }
+}

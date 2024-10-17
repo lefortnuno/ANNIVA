@@ -6,18 +6,20 @@ import birthday from "../../assets/images/birthday.png";
 import candles from "../../assets/gif/candles.gif";
 import heart from "../../assets/gif/heart.gif";
 import zelina from "../../assets/images/zelina.png";
+import Tonokalo from "../bonus/tonokalo";
+import Bonus from "../bonus/bonus";
 
 import "./carte.css";
-import { BiCake } from "react-icons/bi";
 
 export default function Carte() {
   //#region //-variable
   const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
+  const [isPageTurned, setTurnPage] = useState(false);
   const [countdown, setCountdown] = useState(3);
   const [isClickable, setIsClickable] = useState(false);
   const [showGlitter, setShowGlitter] = useState(false);
-  const numRibbons = 9;
+  const numRibbons = 9; 
   //#endregion
 
   useEffect(() => {
@@ -33,6 +35,15 @@ export default function Carte() {
     }
   }, [countdown]);
 
+  useEffect(() => {
+    if (!isOpen) {
+      const timer = setTimeout(() => {
+        setOpen(true);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen]);
+
   const onHandleClick = () => {
     navigate("/");
   };
@@ -41,6 +52,10 @@ export default function Carte() {
     if (isClickable) {
       setOpen(!isOpen);
     }
+  };
+
+  const turnBookPage = () => {
+    setTurnPage(!isPageTurned);
   };
 
   // Generate ribbon elements
@@ -53,7 +68,7 @@ export default function Carte() {
   //#region //-html
   return (
     <HBD isPlay={true}>
-      <div className={`countdown-background ${isClickable ? "yes" : "no"}`}>
+      <div className={`countdown-background ${isClickable ? "yes" : ""}`}>
         {countdown > 0 && <h2 className="countdown-text">{countdown}</h2>}
         {showGlitter && (
           <div className="ribbon-container">{renderRibbons()}</div>
@@ -61,32 +76,29 @@ export default function Carte() {
       </div>
 
       <div
-        className={`birthday-card ${isOpen ? "active" : "passive"}`}
-        onClick={openBook}
+        className={`birthday-card ${isOpen ? "active" : ""}`}
         style={{ pointerEvents: isClickable ? "auto" : "none" }}
       >
-        <div className={`back ${isOpen ? "active" : "passive"}`}>
-          <div className="b-top">
+        <div className={`back ${isOpen ? "active" : ""}`}>
+          <div className="b-top" onClick={openBook}>
             <img src={candles} className="candles" />
           </div>
           <div className="b-bottom">
             <img src={heart} className="heart" onClick={onHandleClick} />
-            <img src={zelina} className="zelina" />
+            <img src={zelina} className="zelina" onClick={turnBookPage} />
           </div>
         </div>
 
-        <div className={`front ${isOpen ? "active" : "passive"}`}>
+        <div className={`front ${isOpen ? "active" : ""}`}>
           <img src={birthday} />
         </div>
 
-        {/* <!-- Text --> */}
-        <div className="text">
-          <p className="title">Tsingerin-Taona!</p>
-          <p>
-            Koa indro tonga ary anio, Lay nandrandrainao hatry ny elà Dia tsaroy
-            sy tadidio Ataovy rakitra tavela.
-          </p>
-          <p>Mirary soa zandry ah!</p>
+        {/* <!-- Right Side --> */}
+        <div
+          className={`text ${isPageTurned ? "pageTurned" : ""}`}
+          onClick={turnBookPage}
+        >
+          {isPageTurned ? <Bonus /> : <Tonokalo />}
         </div>
       </div>
     </HBD>

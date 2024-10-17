@@ -11,8 +11,10 @@
   --largeur-max: 325px;
   --hauteur-max: 450px;
 
-  --marge-t: 35px;
-  --marge-p: 25px;
+  --marge-t-min: 25px;
+  --marge-p-min: 20px;
+  --marge-t: 40px;
+  --marge-p: 35px;
 }
 .countdown-background {
   position: fixed;
@@ -74,10 +76,15 @@
 .birthday-card .text {
   width: 80%;
   height: 80%;
+  color: var(--dark-color); 
+  transition: opacity 0.5s ease-in-out;
+  opacity: 1;
   margin: auto;
-  color: var(--dark-color);
 }
-
+.birthday-card .text.pageTurned {
+  margin: 0;
+}
+ 
 .birthday-card .text p {
   font-size: 1.1em;
   line-height: 1.4;
@@ -85,13 +92,14 @@
   color: var(--dark-color-light);
   font-style: italic;
   text-align: center;
-  margin: 60px auto;
+  margin: var(--marge-p) auto;
   font-weight: bold;
 }
 
 .birthday-card .text .title {
   font-size: 1.5em;
-  margin: 60px auto;
+  margin: var(--marge-t) auto;
+  color: rgb(252, 0, 0);
 }
 
 .birthday-card .front {
@@ -284,9 +292,8 @@
   left: 90%;
   animation-duration: 3.5s;
   animation-delay: 0.1s;
-  background: linear-gradient(45deg, #ffcc00, #ff0066); 
+  background: linear-gradient(45deg, #ffcc00, #ff0066);
 }
- 
 
 @media (width< 661px) {
   .birthday-card {
@@ -296,13 +303,13 @@
   }
 
   .birthday-card .text p {
-    margin: var(--marge-p) auto;
+    margin: var(--marge-p-min) auto;
     font-size: 0.9em;
-    line-height: 1.4;
+    line-height: 1;
   }
 
   .birthday-card .text .title {
-    margin: var(--marge-t) auto;
+    margin: var(--marge-t-min) auto;
     font-size: 1.1em;
   }
 
