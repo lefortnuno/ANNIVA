@@ -19,6 +19,7 @@
 .bonus {
   width: var(--largeur);
   height: var(--hauteur);
+  cursor: pointer;
 }
 .bonus .lefort {
   width: 93%;

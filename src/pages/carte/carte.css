@@ -76,15 +76,25 @@
 .birthday-card .text {
   width: 80%;
   height: 80%;
-  color: var(--dark-color); 
-  transition: opacity 0.5s ease-in-out;
+  color: var(--dark-color);
+  transition: all 0.5s ease-in-out;
+  margin: auto; 
   opacity: 1;
-  margin: auto;
 }
 .birthday-card .text.pageTurned {
   margin: 0;
 }
- 
+.text.fade-out {
+  opacity: 0; 
+}
+.text.fade-in {
+  opacity: 1;
+}
+.birthday-card .text:hover {
+  transform: scale(1.02);
+}
+
+/***********************************************************/
 .birthday-card .text p {
   font-size: 1.1em;
   line-height: 1.4;

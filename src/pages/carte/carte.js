@@ -19,7 +19,9 @@ export default function Carte() {
   const [countdown, setCountdown] = useState(3);
   const [isClickable, setIsClickable] = useState(false);
   const [showGlitter, setShowGlitter] = useState(false);
-  const numRibbons = 9; 
+  const [fade, setFade] = useState("fade-in");
+
+  const numRibbons = 9;
   //#endregion
 
   useEffect(() => {
@@ -54,8 +56,17 @@ export default function Carte() {
     }
   };
 
-  const turnBookPage = () => {
+  const ajustBookPage = () => {
     setTurnPage(!isPageTurned);
+  };
+
+  const turnBookPage = () => {
+    ajustBookPage();
+    setFade("fade-out");
+    setTimeout(() => {
+      setTurnPage(!isPageTurned);
+      setFade("fade-in");
+    }, 500);
   };
 
   // Generate ribbon elements
@@ -95,7 +106,7 @@ export default function Carte() {
 
         {/* <!-- Right Side --> */}
         <div
-          className={`text ${isPageTurned ? "pageTurned" : ""}`}
+          className={`text ${isPageTurned ? "pageTurned" : ""} ${fade}`}
           onClick={turnBookPage}
         >
           {isPageTurned ? <Bonus /> : <Tonokalo />}

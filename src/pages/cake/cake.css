@@ -1,4 +1,6 @@
 .cake {
+  position: relative;
+  top: -30px;
   width: auto;
   cursor: pointer;
 }
