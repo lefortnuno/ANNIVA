@@ -7,7 +7,7 @@ export default function HBD({ children, isPlay }) {
 
   useEffect(() => {
     if (isPlay && audioRef.current) {
-      audioRef.current.volume = 0.1; // Volume à 10%
+      audioRef.current.volume = 0.05; // Volume à 5%
       audioRef.current.play().catch((error) => {
         console.log("Erreur de lecture:", error);
       });

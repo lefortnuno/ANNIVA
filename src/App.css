@@ -9,8 +9,8 @@
   --maintso: #32cd32;
 }
 * {
-  background-color: black;
-  color: white;
+  /* background-color: black;
+  color: white; */
 }
 body {
   overflow: hidden;
