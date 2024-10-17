@@ -103,13 +103,14 @@
   font-style: italic;
   text-align: center;
   margin: var(--marge-p) auto;
-  font-weight: bold;
+  font-weight: normal;
 }
 
 .birthday-card .text .title {
   font-size: 1.5em;
   margin: var(--marge-t) auto;
   color: rgb(252, 0, 0);
+  font-weight: bold;
 }
 
 .birthday-card .front {
