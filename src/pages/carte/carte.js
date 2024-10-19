@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import HBD from "../hbd/hbd";
+import Anniva from "../anniva/anniva";
 
 import birthday from "../../assets/images/birthday.png";
 import candles from "../../assets/gif/candles.gif";
@@ -8,6 +8,7 @@ import heart from "../../assets/gif/heart.gif";
 import zelina from "../../assets/images/zelina.png";
 import Tonokalo from "../bonus/tonokalo";
 import Bonus from "../bonus/bonus";
+import HBD from "../hbd/hbd";
 
 import "./carte.css";
 
@@ -15,6 +16,7 @@ export default function Carte() {
   //#region //-variable
   const navigate = useNavigate();
   const [isOpen, setOpen] = useState(false);
+  const [isBirthday, setBirthday] = useState(false);
   const [isPageTurned, setTurnPage] = useState(false);
   const [countdown, setCountdown] = useState(3);
   const [isClickable, setIsClickable] = useState(false);
@@ -50,6 +52,23 @@ export default function Carte() {
     navigate("/");
   };
 
+  const hbdZelina = () => {
+    setOpen(false);
+    const timer = setTimeout(() => {
+      setBirthday(true);
+    }, 1500); // 1.5s avant qu'apparaisse le Gift
+    return () => clearTimeout(timer);
+  };
+
+  useEffect(() => {
+    if (isBirthday) {
+      const timer = setTimeout(() => {
+        setBirthday(false);
+      }, 27000); //duree 27s
+      return () => clearTimeout(timer);
+    }
+  }, [isBirthday]);
+
   const openBook = () => {
     if (isClickable) {
       setOpen(!isOpen);
@@ -62,11 +81,7 @@ export default function Carte() {
 
   const turnBookPage = () => {
     ajustBookPage();
-    setFade("fade-out");
-    setTimeout(() => {
-      setTurnPage(!isPageTurned);
-      setFade("fade-in");
-    }, 500);
+    setTurnPage(!isPageTurned);
   };
 
   // Generate ribbon elements
@@ -78,7 +93,7 @@ export default function Carte() {
 
   //#region //-html
   return (
-    <HBD isPlay={true}>
+    <Anniva isPlay={true}>
       <div className={`countdown-background ${isClickable ? "yes" : ""}`}>
         {countdown > 0 && <h2 className="countdown-text">{countdown}</h2>}
         {showGlitter && (
@@ -86,33 +101,39 @@ export default function Carte() {
         )}
       </div>
 
-      <div
-        className={`birthday-card ${isOpen ? "active" : ""}`}
-        style={{ pointerEvents: isClickable ? "auto" : "none" }}
-      >
-        <div className={`back ${isOpen ? "active" : ""}`}>
-          <div className="b-top" onClick={openBook}>
-            <img src={candles} className="candles" />
-          </div>
-          <div className="b-bottom">
-            <img src={heart} className="heart" onClick={onHandleClick} />
-            <img src={zelina} className="zelina" onClick={turnBookPage} />
-          </div>
-        </div>
-
-        <div className={`front ${isOpen ? "active" : ""}`}>
-          <img src={birthday} />
-        </div>
-
-        {/* <!-- Right Side --> */}
+      {!isBirthday ? (
         <div
-          className={`text ${isPageTurned ? "pageTurned" : ""} ${fade}`}
-          onClick={turnBookPage}
+          className={`birthday-card ${isOpen ? "active" : ""} ${fade}`}
+          style={{ pointerEvents: isClickable ? "auto" : "none" }}
         >
-          {isPageTurned ? <Bonus /> : <Tonokalo />}
+          <div className={`back ${isOpen ? "active" : ""}`}>
+            <div className="b-top" onClick={openBook}>
+              <img src={candles} className="candles" />
+            </div>
+            <div className="b-bottom">
+              <img src={heart} className="heart" onClick={onHandleClick} />
+              <img src={zelina} className="zelina" onClick={hbdZelina} />
+            </div>
+          </div>
+
+          <div className={`front ${isOpen ? "active" : ""}`}>
+            <img src={birthday} />
+          </div>
+
+          {/* <!-- Right Side --> */}
+          <div
+            className={`text ${isPageTurned ? "pageTurned" : ""} ${fade}`}
+            onClick={turnBookPage}
+          >
+            {isPageTurned ? <Bonus /> : <Tonokalo />}
+          </div>
         </div>
-      </div>
-    </HBD>
+      ) : (
+        <div className={fade}>
+          <HBD />
+        </div>
+      )}
+    </Anniva>
   );
   //#endregion
 }
