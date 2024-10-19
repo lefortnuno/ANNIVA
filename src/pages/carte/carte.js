@@ -56,7 +56,7 @@ export default function Carte() {
     setOpen(false);
     const timer = setTimeout(() => {
       setBirthday(true);
-    }, 1500); // 1.5s avant qu'apparaisse le Gift
+    }, 1700); // 1.5s avant qu'apparaisse le Gift
     return () => clearTimeout(timer);
   };
 
@@ -107,12 +107,12 @@ export default function Carte() {
           style={{ pointerEvents: isClickable ? "auto" : "none" }}
         >
           <div className={`back ${isOpen ? "active" : ""}`}>
-            <div className="b-top" onClick={openBook}>
+            <div className="b-top" onClick={hbdZelina}>
               <img src={candles} className="candles" />
             </div>
             <div className="b-bottom">
               <img src={heart} className="heart" onClick={onHandleClick} />
-              <img src={zelina} className="zelina" onClick={hbdZelina} />
+              <img src={zelina} className="zelina" onClick={openBook} />
             </div>
           </div>
 
